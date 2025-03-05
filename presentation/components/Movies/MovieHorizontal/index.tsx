@@ -1,16 +1,19 @@
-import { Movie } from "@/infraestructure/interfaces/movies-db/moviedb.interface";
 import React from "react";
 import { View, Text, FlatList } from "react-native";
+
 import { MoviePoster } from "../MoviePoster";
+
+import { Movie } from "@/infraestructure/interfaces/movies-db/moviedb.interface";
 
 interface Props {
     listMovies: Movie[];
     title: string;
+    className?: string;
 }
 
-export const MovieHorizontal = ({ listMovies, title }: Props) => {
+export const MovieHorizontal = ({ listMovies, title, className = '' }: Props) => {
     return (
-        <View>
+        <View className={`${className}`}>
             <Text className="mb-2 px-4 text-xl font-bold">{ title }</Text>
 
             <FlatList

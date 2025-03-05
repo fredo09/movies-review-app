@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 
 import { useMovies } from "@/presentation/hooks/useMovies";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -9,7 +9,12 @@ import { MovieHorizontal } from "@/presentation/components/Movies/MovieHorizonta
 const HomeScreen = () => {
     const safeArea = useSafeAreaInsets();
 
-    const { nowPlayingQuery, popularMovieQuery } = useMovies();
+    const { 
+        nowPlayingQuery, 
+        popularMovieQuery, 
+        topRatedMovieQuery, 
+        upComingMovieQuery 
+    } = useMovies();
 
     if ( nowPlayingQuery?.isLoading ) {
         return (
@@ -20,16 +25,32 @@ const HomeScreen = () => {
     }
 
     return (
-        <View className="mt-2" style={{ paddingTop: safeArea.top }}>
-            <Text className="mb-2 font-bold px-4 text-2xl">Movies App</Text>
+        <ScrollView>
+            <View style={{ paddingTop: safeArea.top }} className="mt-2 pb-11">
+                <Text className="mb-2 font-bold px-4 text-2xl">Movies App 🎥</Text>
 
-            {/* Carrusel de imagenes NowPlaying */}
-            <MainSlideShow listMovies={nowPlayingQuery?.data ?? []}/>
+                {/* Carrusel de imagenes NowPlaying */}
+                <MainSlideShow 
+                listMovies={nowPlayingQuery?.data ?? []}/>
 
-            {/* Carrusel de imagenes popular */}
-            <MovieHorizontal listMovies={popularMovieQuery?.data ?? []} title="Populares"/>
+                {/* Carrusel de imagenes popular */}
+                <MovieHorizontal 
+                className="mb-6" 
+                listMovies={popularMovieQuery?.data ?? []} 
+                title="Populares 😎"/>
 
-        </View>
+                {/* Carrusel de imagenes top */}
+                <MovieHorizontal 
+                className="mb-6" 
+                listMovies={topRatedMovieQuery?.data ?? []} 
+                title="Mejor Calificadas 🌟"/>
+
+                {/* Carrusel de imagenes top */}
+                <MovieHorizontal className="mb-6" 
+                listMovies={upComingMovieQuery?.data ?? []}
+                title="Proximamente 👀"/>
+            </View>
+        </ScrollView>
     );
 };
 
