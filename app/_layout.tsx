@@ -5,6 +5,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 //* Config global styles NativeWind
 import "../global.css";
+import { Stack } from 'expo-router';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -12,9 +13,11 @@ const queryClient = new QueryClient();
 const RootLayout = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <View>
-        <Text className='text-3xl'>RootLayout</Text>
-      </View>
+      <Stack
+        screenOptions={{
+          headerShown: false
+        }}
+      />
     </QueryClientProvider>
   );
 }
