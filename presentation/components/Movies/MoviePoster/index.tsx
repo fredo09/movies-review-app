@@ -1,6 +1,6 @@
-import { router } from "expo-router";
 import React from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { router } from "expo-router";
+import { Image, Pressable } from "react-native";
 
 interface Props {
     id: number;
