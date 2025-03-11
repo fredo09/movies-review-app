@@ -1,19 +1,34 @@
 import React from "react";
 import { router } from "expo-router";
 import{ Ionicons } from '@expo/vector-icons';
+
+import { LinearGradient } from 'expo-linear-gradient';
+// import { AirbnbRating, Rating } from 'react-native-ratings';
 import { View, useWindowDimensions, Image, Text, Pressable } from "react-native";
 
 interface Props {
     poster: string;
     originalTitle: string;
-    title: string
+    title: string;
+    rating?: number;
 }
 
-const MovieHeader = ({ poster, originalTitle, title }: Props) => {
+const MovieHeader = ({ poster, originalTitle, title, rating = 0 }: Props) => {
     const { height:screenHeight  } = useWindowDimensions(); // -> dimension de window dispositivo
 
     return (
         <>  
+            {/* Gradiente header */}
+            <LinearGradient
+                colors={['rgba(0,0,0,0.3)', 'transparent']}
+                start={[0, 0]}
+                style={{ 
+                    height: screenHeight * 0.4,
+                    position: 'absolute',
+                    zIndex: 1,
+                    width: '100%'
+                }}/>
+
             {/* Icon Header */}
             <View style={{
                 position: 'absolute',
@@ -47,10 +62,24 @@ const MovieHeader = ({ poster, originalTitle, title }: Props) => {
                     </View>
             </View>
 
-            {/* title */}
-            <View className="px-5 mt-5">
-                <Text className="font-normal text-xl">{originalTitle}</Text>
-                <Text className="font-semibold text-4xl">{title}</Text>
+            {/* title  */}
+            <View className="px-5 mt-3">
+                <View>
+                    <Text className="font-normal text-xl">{originalTitle}</Text>
+                    <Text className="font-semibold text-4xl">{title}</Text>
+                    {/* <Text className="">{rating}</Text> */}
+                </View>
+                {/* <View>
+                    <Rating
+                        type='heart'
+                        ratingCount={5}
+                        imageSize={30}
+                        showRating
+                        ratingColor='#e2e2e2e'
+                        onFinishRating={(rating) => rating}
+                        style={{ paddingVertical: 10 }}
+                        />
+                </View> */}
             </View>
         </>
     );

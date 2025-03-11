@@ -28,7 +28,7 @@ export class MovieMapper {
             duration: movie?.runtime,
             budget: movie?.budget,
             originalTitle:movie?.original_title,
-            ProductionCompany: movie?.production_companies.map(c => c.name)
+            productionCompanies: movie?.production_companies.map(c => c.name)
         }
     }
 }
