@@ -5,6 +5,7 @@ import { useMovies } from "@/presentation/hooks/useMovies";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MainSlideShow } from "@/presentation/components/MainSlideShow";
 import { MovieHorizontal } from "@/presentation/components/Movies/MovieHorizontal";
+import { Movie } from "@/infraestructure/interfaces/movies-db/moviedb.interface";
 
 const HomeScreen = () => {
     const safeArea = useSafeAreaInsets();
@@ -15,6 +16,8 @@ const HomeScreen = () => {
         topRatedMovieQuery, 
         upComingMovieQuery 
     } = useMovies();
+
+    const topRateMoviesFilter = topRatedMovieQuery.data?.pages.flat().filter((movie): movie is Movie => movie !== undefined);
 
     if ( nowPlayingQuery?.isLoading ) {
         return (
@@ -40,9 +43,10 @@ const HomeScreen = () => {
                 title="Populares 😎"/>
 
                 {/* Carrusel de imagenes top */}
-                <MovieHorizontal 
-                className="mb-6" 
-                listMovies={topRatedMovieQuery?.data ?? []} 
+                <MovieHorizontal
+                className="mb-6"
+                listMovies={ topRateMoviesFilter ?? []}
+                loadNextPage={topRatedMovieQuery.fetchNextPage}
                 title="Mejor Calificadas 🌟"/>
 
                 {/* Carrusel de imagenes extrenos */}
