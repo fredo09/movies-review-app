@@ -45,8 +45,9 @@ const HomeScreen = () => {
                 listMovies={topRatedMovieQuery?.data ?? []} 
                 title="Mejor Calificadas 🌟"/>
 
-                {/* Carrusel de imagenes top */}
-                <MovieHorizontal className="mb-6" 
+                {/* Carrusel de imagenes extrenos */}
+                <MovieHorizontal 
+                className="mb-6" 
                 listMovies={upComingMovieQuery?.data ?? []}
                 title="Proximamente 👀"/>
             </View>

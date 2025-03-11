@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { NowPlayingAction } from "@/core/actions/movies/now-playing.action";
 import { popularAction } from "@/core/actions/movies/popular.action";
 import { topRactedAction } from '@/core/actions/movies/top-rated.action';
