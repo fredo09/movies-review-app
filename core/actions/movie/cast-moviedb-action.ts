@@ -1,6 +1,6 @@
-import { CastMovieDBResponse } from "@/infraestructure/interfaces/movies-db/moviedb.cast.response.interface";
 import { movieApi } from "../api/movie-api";
 import { CastMapper } from "@/infraestructure/mappers/credits-mapper";
+import { CastMovieDBResponse } from "@/infraestructure/interfaces/movies-db/moviedb.cast.response.interface";
 
 export const getCastMovieDbAction = async (movieId: number | string) => {
     try {
