@@ -28,10 +28,6 @@ const MovieDescription = ({ movie }: Props) => {
                     Presupuesto - {Formatter.currencyMoney(movie.budget)}
                 </Text>
             </View>
-
-            <View>
-                <Text className='font-bold text-2xl'>Actores </Text>
-            </View>
         </View>
     )
 }

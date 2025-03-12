@@ -4,15 +4,16 @@ import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 
 import { useMovie } from '@/presentation/hooks/useMovie';
 
+import { MovieCast } from '@/presentation/components/Movies/MovieCast';
 import MovieHeader from '@/presentation/components/Movies/MovieHeader';
 import MovieDescription from '@/presentation/components/Movies/MovieDescription';
 
 const MovieScreen = () => {
     const { id } = useLocalSearchParams();
 
-    const { movieDetail } = useMovie(+id);
+    const { movieDetail, castMovieDetail } = useMovie(+id);
 
-    if (movieDetail?.isLoading || !movieDetail.data) {
+    if (movieDetail?.isLoading || !movieDetail.data || !castMovieDetail.data) {
         return(
             <View className='flex flex-1 justify-center items-center'>
                 <Text className='mb-3 font-bold'>Cargando...</Text>
@@ -33,6 +34,11 @@ const MovieScreen = () => {
             {/* Movie Description */}
             <MovieDescription
                 movie={movieDetail.data}
+            />
+
+            {/* Movie Description */}
+            <MovieCast 
+                listCast={castMovieDetail.data}
             />
         </ScrollView>
     )
